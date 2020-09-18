@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		D30F077C2512131A00967B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30F077B2512131A00967B38 /* AppDelegate.swift */; };
-		D30F077E2512131A00967B38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30F077D2512131A00967B38 /* SceneDelegate.swift */; };
-		D30F07802512131A00967B38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30F077F2512131A00967B38 /* ViewController.swift */; };
+		D30F07802512131A00967B38 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30F077F2512131A00967B38 /* MainViewController.swift */; };
 		D30F07832512131A00967B38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30F07812512131A00967B38 /* Main.storyboard */; };
 		D30F07852512131C00967B38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D30F07842512131C00967B38 /* Assets.xcassets */; };
 		D30F07882512131C00967B38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30F07862512131C00967B38 /* LaunchScreen.storyboard */; };
+		D30F0790251240CA00967B38 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30F078F251240CA00967B38 /* CustomSegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D30F07782512131A00967B38 /* testLampa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testLampa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30F077B2512131A00967B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D30F077D2512131A00967B38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D30F077F2512131A00967B38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D30F077F2512131A00967B38 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D30F07822512131A00967B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D30F07842512131C00967B38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D30F07872512131C00967B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D30F07892512131C00967B38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D30F078F251240CA00967B38 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				D30F077B2512131A00967B38 /* AppDelegate.swift */,
-				D30F077D2512131A00967B38 /* SceneDelegate.swift */,
-				D30F077F2512131A00967B38 /* ViewController.swift */,
+				D30F077F2512131A00967B38 /* MainViewController.swift */,
+				D30F078F251240CA00967B38 /* CustomSegmentedControl.swift */,
 				D30F07812512131A00967B38 /* Main.storyboard */,
 				D30F07842512131C00967B38 /* Assets.xcassets */,
 				D30F07862512131C00967B38 /* LaunchScreen.storyboard */,
@@ -138,9 +138,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D30F07802512131A00967B38 /* ViewController.swift in Sources */,
+				D30F07802512131A00967B38 /* MainViewController.swift in Sources */,
 				D30F077C2512131A00967B38 /* AppDelegate.swift in Sources */,
-				D30F077E2512131A00967B38 /* SceneDelegate.swift in Sources */,
+				D30F0790251240CA00967B38 /* CustomSegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +287,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T9592J2HYY;
 				INFOPLIST_FILE = testLampa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,6 +306,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T9592J2HYY;
 				INFOPLIST_FILE = testLampa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
