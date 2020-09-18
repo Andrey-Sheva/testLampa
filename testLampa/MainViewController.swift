@@ -11,6 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
     
     var collectionView: UICollectionView!
+    let topCellIdentifier = "cell"
     
     let segmentedTitles = ["STORIES", "VIDEO", "FAVOURITES"]
     let image = UIImage(named: "menu")
@@ -22,6 +23,7 @@ class MainViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
+    let topNibName = "TopCollectionViewCell"
     
    
     
@@ -64,11 +66,16 @@ class MainViewController: UIViewController {
         let collectionLayout = UICollectionViewFlowLayout()
         
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: collectionLayout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         view.addSubview(collectionView)
         setupCollectionViewConstraints()
+        
+        //MARK:- config Nib cells
+        let topNibCell = UINib(nibName: topNibName, bundle: nil)
+        collectionView.register(topNibCell, forCellWithReuseIdentifier: topNibName)
+        
         
     }
     
@@ -78,8 +85,8 @@ class MainViewController: UIViewController {
         NSLayoutConstraint.activate([
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 62)
         ])
     }
     
@@ -91,7 +98,7 @@ class MainViewController: UIViewController {
           segmented.backgroundColor = .black
           view.addSubview(segmented)
           setupConstraints(segment: segmented)
-        //  configCollectionView()
+          configCollectionView()
           
       }
     // MARK:- Setup segment constraints
@@ -100,8 +107,8 @@ class MainViewController: UIViewController {
         NSLayoutConstraint.activate([
             segment.leftAnchor.constraint(equalTo: view.leftAnchor),
             segment.rightAnchor.constraint(equalTo: view.rightAnchor),
-            segment.topAnchor.constraint(equalTo: view.topAnchor),
-            segment.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            segment.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            segment.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }
@@ -112,7 +119,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: topNibName, for: indexPath)
+        cell.backgroundColor = .red
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -122,7 +130,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 extension MainViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: view.frame.width)
+        return CGSize(width: view.frame.width, height: view.frame.width)
     }
 }
 
