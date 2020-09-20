@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
         return label
     }()
     let topNibName = "TopCollectionViewCell"
+    let defaultName = "DefaultCollectionViewCell"
     
    
     
@@ -44,7 +45,6 @@ class MainViewController: UIViewController {
     
     }
     
-  
     // MARK:- Config navigationBar
     func configNavigationBar(){
         let rightBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
@@ -58,13 +58,13 @@ class MainViewController: UIViewController {
         
         navigationItem.leftBarButtonItems = [leftBarIButton, title]
         navigationItem.leftBarButtonItem?.tintColor = .white
-        
+    
     }
     
     // MARK:- Config collectionView
     func configCollectionView(){
         let collectionLayout = UICollectionViewFlowLayout()
-        
+        //collectionView.showsHorizontalScrollIndicator = false
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: collectionLayout)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -75,8 +75,8 @@ class MainViewController: UIViewController {
         //MARK:- config Nib cells
         let topNibCell = UINib(nibName: topNibName, bundle: nil)
         collectionView.register(topNibCell, forCellWithReuseIdentifier: topNibName)
-        
-        
+        let defaultNib = UINib(nibName: defaultName, bundle: nil)
+        collectionView.register(defaultNib, forCellWithReuseIdentifier: defaultName)
     }
     
     // MARK:- Setup collectionView constraints
@@ -115,13 +115,18 @@ class MainViewController: UIViewController {
 //
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.item == 0 {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: topNibName, for: indexPath)
         cell.backgroundColor = .red
         return cell
+            }else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: defaultName, for: indexPath)
+            return cell
+        }
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
@@ -130,7 +135,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 extension MainViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.width)
+        return CGSize(width: view.frame.width, height: 270)
     }
 }
 
