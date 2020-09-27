@@ -28,7 +28,7 @@ extension NetworkService: TargetType{
     }
     
     var baseURL: URL {
-        guard let url = URL(string: environmentBaseURL) else {fatalError("base url couldnot configurate")}
+        guard let url = URL(string: environmentBaseURL) else {fatalError("base url couldnt configurate")}
         return url
     }
     

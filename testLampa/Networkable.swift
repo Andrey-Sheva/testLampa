@@ -7,3 +7,6 @@
 //
 
 import Foundation
+protocol Networkable{
+    var provider: M
+}

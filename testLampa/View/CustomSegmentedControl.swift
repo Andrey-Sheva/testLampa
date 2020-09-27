@@ -8,18 +8,25 @@
 
 import UIKit
 
+
 class CustomSegmentedControl: UIView {
     
     private var buttonTitles: [String]!
     private var buttons: [UIButton]!
     private var selectorView: UIView!
     
+    var view: UIView!
+    
+    var buttonTag = 0
     var textColor: UIColor = .lightText
     var selectorColor: UIColor = .white
     
-    convenience init(frame: CGRect, buttonTitles: [String]) {
-           self.init(frame: frame)
-           self.buttonTitles = buttonTitles
+    
+    
+    convenience init(frame: CGRect, buttonTitles: [String], view: UIView) {
+            self.init(frame: frame)
+            self.buttonTitles = buttonTitles
+            self.view = view
        }
     
     private func configStackView(){
@@ -40,7 +47,18 @@ class CustomSegmentedControl: UIView {
         ])
         for button in buttons{
             stackView.addArrangedSubview(button)
+            button.tag = buttonTag
+            buttonTag += 1
         }
+    }
+    func configViewConstraints(view: UIView){
+        view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
+            view.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
+            view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     
@@ -49,7 +67,7 @@ class CustomSegmentedControl: UIView {
         selectorView = UIView(frame: CGRect(x: 0,
                                             y: self.frame.height,
                                             width: selectorWidth,
-                                            height: 2))
+                                            height: 1))
         selectorView.backgroundColor = selectorColor
         addSubview(selectorView)
     }
@@ -75,9 +93,15 @@ class CustomSegmentedControl: UIView {
                     self.selectorView.frame.origin.x = selectorPosition
                 }
                 button.setTitleColor(selectorColor, for: .normal)
+                if button.tag >= 1{
+                    superview?.addSubview(view)
+                }else{
+                    view.removeFromSuperview()
+                }
             }
         }
     }
+    
     private func updateView(){
         createButtons()
         configSelectView()

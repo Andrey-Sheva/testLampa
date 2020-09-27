@@ -11,12 +11,12 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-var window: UIWindow?
-
+    var window: UIWindow?
+    var mainBuilder: MainBuilder = MainBuilder()
+    
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
-    
-    let mainController = MainViewController()
+    let mainController = mainBuilder.createMainModule()
     let navigationController = UINavigationController(rootViewController: mainController)
     
     self.window? = UIWindow(frame: UIScreen.main.bounds)

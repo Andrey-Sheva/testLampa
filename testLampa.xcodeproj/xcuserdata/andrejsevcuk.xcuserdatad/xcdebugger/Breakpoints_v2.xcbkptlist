@@ -22,14 +22,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B6EE09E8-9F15-48EB-B96A-A492FA96AB45"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "testLampa/Cells/TopCollectionViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "constraintsCollectionView()"
             landmarkType = "7">
          </BreakpointContent>

@@ -7,33 +7,37 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TopCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet var collectionView: UICollectionView!
     
+    
     let nibName = "TopContentCollectionViewCell"
+     let urlString = "https://image.tmdb.org/t/p/original"
+    //
+    var countOfPages = MainViewController.presenter.topRatedMovies?.count
     
-    
-    var fff = [1,4,2,2]
     override func awakeFromNib() {
         super.awakeFromNib()
+       
         configCollectionView()
         collectionView.dataSource = self
         collectionView.delegate = self
         configCollectionView()
-        pageControl.numberOfPages = fff.count
+        pageControl.numberOfPages = countOfPages ?? 20
         constraintsCollectionView()
         constraintsPageControll()
         pageControl.backgroundColor = .black
     }
     
-    
-    
     func configCollectionView(){
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.collectionViewLayout = layout
         
@@ -62,17 +66,76 @@ class TopCollectionViewCell: UICollectionViewCell {
 }
 extension TopCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return MainViewController.presenter.topRatedMovies?.count ?? 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nibName, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nibName, for: indexPath) as! TopContentCollectionViewCell
+        let topMovies = MainViewController.presenter.topRatedMovies?[indexPath.item]
+        
+        if let vote = topMovies?.voteAverage
+        {
+            cell.labelUrlDate.text = "Avarage vote: " + String(describing: vote)
+        }
+        if topMovies?.posterPath != nil {
+            cell.imageView.kf.indicatorType = .activity
+            cell.imageView.kf.setImage(with: URL(string: urlString + topMovies!.posterPath),
+                                   placeholder: nil,
+                                   options: nil,
+                                   progressBlock: nil,
+                                   completionHandler: nil)
+            cell.backgroundColor = .clear
+        }
         return cell
     }
-   
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        pageControl.currentPage = indexPath.item
+        cell.alpha = 0
+           UIView.animate(withDuration: 1) {
+            cell.alpha = 1
+        }
+    }
 }
+
 extension TopCollectionViewCell: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: contentView.frame.width, height: 270)
+    }
+    
+}
+//MARK:- scroll pages one by one
+
+class PageCollectionLayout: UICollectionViewFlowLayout {
+
+    
+    private var previousOffset: CGFloat = 0
+    private var currentPage: Int = 0
+
+    public func setPreviousOffset(offset: CGFloat) {
+        self.calculateCurrentPage(by: offset)
+    }
+    
+    private func calculateCurrentPage(by offset: CGFloat) {
+        let itemWidth: CGFloat = itemSize.width + minimumInteritemSpacing
+        currentPage = Int(offset / itemWidth)
+        let updatedOffset = (itemSize.width + minimumInteritemSpacing) * CGFloat(currentPage)
+        previousOffset = updatedOffset
+    }
+    
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        guard let collectionView = collectionView else {
+            return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
+        }
+
+        let itemsCount = collectionView.numberOfItems(inSection: 0)
+        if previousOffset > collectionView.contentOffset.x && velocity.x < 0 {
+            currentPage = max(currentPage - 1, 0)
+        } else if previousOffset < collectionView.contentOffset.x && velocity.x > 0 {
+            currentPage = min(currentPage + 1, itemsCount - 1)
+        }
+        let updatedOffset = (itemSize.width + minimumInteritemSpacing) * CGFloat(currentPage)
+        previousOffset = updatedOffset
+        return CGPoint(x: updatedOffset, y: proposedContentOffset.y)
     }
 }

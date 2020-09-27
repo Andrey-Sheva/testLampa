@@ -22,26 +22,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.62155563599999997" green="0.34862752670000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DIq-RR-wtO">
-                        <rect key="frame" x="447" y="20" width="73" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dl-cR-hDv">
-                        <rect key="frame" x="0.0" y="226" width="287" height="21"/>
+                        <rect key="frame" x="0.0" y="226" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-W4-a1e">
-                        <rect key="frame" x="0.0" y="109" width="414" height="99"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="41"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -49,8 +37,6 @@
             <connections>
                 <outlet property="imageView" destination="uua-RQ-Jvg" id="Tc2-Mm-yBG"/>
                 <outlet property="labelUrlDate" destination="7Dl-cR-hDv" id="0TG-8Q-1Wg"/>
-                <outlet property="rateView" destination="DIq-RR-wtO" id="Pkv-R1-1Of"/>
-                <outlet property="textView" destination="vKJ-W4-a1e" id="8EH-Lq-FDg"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="101.45089285714285"/>
         </collectionViewCell>

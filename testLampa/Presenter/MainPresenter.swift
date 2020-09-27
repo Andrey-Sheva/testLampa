@@ -49,4 +49,9 @@ class MainPresenter: MainViewPresenterProtocol{
             }
         }
     }
+    func getAllMovies() -> [Movie]{
+        guard let movies = movies, let topRatedMovies = topRatedMovies else {return []}
+        let arr = movies
+        return arr
+    }
 }

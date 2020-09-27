@@ -6,4 +6,8 @@
 //  Copyright © 2020 Андрей Шевчук. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol Delegate: class {
+    func updateCell(cell: UITableViewCell, indexPath: Int)
+}
